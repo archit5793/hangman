@@ -1,1 +1,21 @@
 /* Empty. Add your own CSS if you like */
+h1,h2,h3,p{
+    text-align:center;
+}
+
+.about-container{
+    padding-top:20vh;
+}
+
+.play section button{
+    margin:5px;
+}
+
+.play footer{
+    position: absolute;
+    bottom:5px;
+}
+
+.start-button{
+    margin-top:50%;
+}

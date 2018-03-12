@@ -1,0 +1,31 @@
+<ion-view view-title="Play">
+  <ion-content class="padding play">
+    <div ng-show="!isPlaying && !lose && !showWinner" class="text-center start-button">
+        <button ng-click="play()" class="button button-balanced content">Start Game</button>
+    </div>
+    <div ng-show="!lose">
+      <section ng-show="isPlaying">
+        <span ng-repeat="character in brandArray track by $index">
+          <button class="button button-outline button-royal" ng-if="character!='$'">{{character}}</button>
+          <button class="button button-outline button-royal" ng-if="character=='$'">--</button>
+        </span>
+      </section>
+      <div class="text-center" ng-show="isPlaying">
+        <h3>Chances left : {{chances}}</h3>
+      </div>
+      <footer>
+        <span ng-show="isPlaying" ng-repeat="alphabet in alpha">
+          <button class="button button-positive" ng-click="whichBtn(alphabet)">{{alphabet}}</button>
+        </span>
+      </footer>
+    </div>
+    <div class="text-center" ng-show="lose">
+      <h3>Sorry, you lost. Brand was {{brand}}</h3>
+      <button ng-click="play()" ng-show="!isPlaying || lose || showWinner" class="button button-balanced content">Play Again</button>
+    </div>
+    <div class="text-center" ng-show="showWinner">
+        <h3>You won. Brand was {{brand}}. Your score is {{score}}</h3>
+        <button ng-click="play()" ng-show="!isPlaying || lose || showWinner" class="button button-balanced content">Play Again</button>
+    </div>
+  </ion-content>
+</ion-view>
