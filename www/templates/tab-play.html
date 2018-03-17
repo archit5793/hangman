@@ -1,16 +1,17 @@
 <ion-view view-title="Play">
   <ion-content class="padding play">
-    <div ng-show="!isPlaying && !lose && !showWinner" class="text-center start-button">
+    <div ng-show="!isPlaying && !lose && !showWinner" class="text-center start-button starting">
+        <h2>Guess the Brand</h2>
         <button ng-click="play()" class="button button-balanced content">Start Game</button>
     </div>
     <div ng-show="!lose">
       <section ng-show="isPlaying">
         <span ng-repeat="character in brandArray track by $index">
-          <button class="button button-outline button-royal" ng-if="character!='$'">{{character}}</button>
-          <button class="button button-outline button-royal" ng-if="character=='$'">--</button>
+          <button class="button button-outline button-calm" ng-if="character!='$'">{{character}}</button>
+          <button class="button button-outline button-calm" ng-if="character=='$'">--</button>
         </span>
       </section>
-      <div class="text-center" ng-show="isPlaying">
+      <div class="text-center chances-text" ng-show="isPlaying">
         <h3>Chances left : {{chances}}</h3>
       </div>
       <footer>
@@ -20,11 +21,13 @@
       </footer>
     </div>
     <div class="text-center" ng-show="lose">
-      <h3>Sorry, you lost. Brand was {{brand}}</h3>
+      <h3 style="color:#fff;">Sorry, you lost. Brand was {{brand | uppercase}}</h3>
+      <img ng-src="img/{{brand}}.png" alt="{{brand}}" height="300" width="300">
       <button ng-click="play()" ng-show="!isPlaying || lose || showWinner" class="button button-balanced content">Play Again</button>
     </div>
     <div class="text-center" ng-show="showWinner">
-        <h3>You won. Brand was {{brand}}. Your score is {{score}}</h3>
+        <h3 style="color:#fff;">You won. Brand was {{brand | uppercase}}. Your score is {{score}}</h3>
+        <img ng-src="img/{{brand}}.png" alt="{{brand}}" height="300" width="300">
         <button ng-click="play()" ng-show="!isPlaying || lose || showWinner" class="button button-balanced content">Play Again</button>
     </div>
   </ion-content>

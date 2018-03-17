@@ -1,14 +1,28 @@
 /* Empty. Add your own CSS if you like */
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 h1,h2,h3,p{
     text-align:center;
+    font-family: 'Pacifico', cursive;
 }
 
 .about-container{
     padding-top:20vh;
 }
 
+.play{
+    background-color: hsl(0, 0%, 21%);
+}
+
+.starting h2{
+    color: #fff;
+}
+
 .play section button{
     margin:5px;
+}
+
+.play .chances-text h3{
+    color: #fff;
 }
 
 .play footer{

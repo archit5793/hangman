@@ -1,6 +1,16 @@
 angular.module('starter.controllers', [])
 
-.controller('PlayCtrl', function($scope,Brands) {
+.controller('PlayCtrl', function($scope,Brands,Scores) {
+
+  $scope.playLose = function() {
+    var audio = new Audio('audio/lose.mp3');
+    audio.play();
+  };
+
+  $scope.playWin = function() {
+    var audio = new Audio('audio/win.mp3');
+    audio.play();
+  };
 
   $scope.init = function(){
     $scope.alphabets = 'abcdefghijklmnopqrstuvwxyz';
@@ -13,7 +23,6 @@ angular.module('starter.controllers', [])
     $scope.lose = false;
     $scope.score = 0;
   }
-
 
   $scope.play = function(){
     $scope.init();
@@ -44,29 +53,30 @@ angular.module('starter.controllers', [])
           $scope.showWinner = true;
           $scope.isPlaying = false;
           $scope.score = $scope.brand.length-Math.ceil($scope.brand.length/3)+$scope.chances;
+          Scores.addScore($scope.score);
+          $scope.playWin();
         }
       }
     }else{
       $scope.lose = true;
       $scope.isPlaying = false;
+      $scope.playLose();
     }
   }
 
 })
 
-.controller('ScoresCtrl', function($scope, Chats) {
+.controller('ScoresCtrl', function($scope, Scores) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  $scope.$on('$ionicView.enter', function(e) {
+    $scope.scoresArray = Scores.allScores();  
+  });
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+  
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
